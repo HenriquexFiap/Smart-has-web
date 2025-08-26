@@ -1,0 +1,58 @@
+<mat-card class="triagem-card">
+  <div class="header">
+    <mat-icon fontIcon="science"></mat-icon>
+    <h2>Triagem</h2>
+  </div>
+
+  <p class="intro">
+    Descreva seus sintomas abaixo. Vamos sugerir a especialidade mais adequada.
+  </p>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Sintomas</mat-label>
+    <textarea
+      matInput
+      rows="5"
+      placeholder="Ex.: dor no peito, palpitações, falta de ar..."
+      [(ngModel)]="sintomas"
+      name="sintomas"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="analisarSintomas()">
+      <mat-icon>search</mat-icon>
+      Analisar
+    </button>
+  </div>
+
+  <div *ngIf="especialidade" class="resultado">
+    <mat-card class="resultado-card">
+      <mat-card-header>
+        <mat-card-title class="resultado-title">
+          <mat-icon color="primary">lightbulb</mat-icon>
+          Especialidade Sugerida
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="especialidade">
+          {{ especialidade }}
+        </div>
+        <p class="observacao">
+          Você pode prosseguir para o agendamento com essa especialidade.
+        </p>
+        <div class="actions">
+          <a
+            mat-raised-button
+            color="accent"
+            [routerLink]="['/agendamentos/novo']"
+            [queryParams]="{ esp: especialidade }"
+          >
+            <mat-icon>event</mat-icon>
+            Agendar consulta
+          </a>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-card>

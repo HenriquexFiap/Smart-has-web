@@ -1,0 +1,55 @@
+<div class="detalhes-container" *ngIf="apt() as agendamento">
+  <mat-card class="detalhes-card">
+    <div class="top">
+      <div class="avatar-wrap">
+        <img *ngIf="photoUrl(); else letra" class="photo" [src]="photoUrl()!" alt="Foto do médico" />
+        <ng-template #letra>
+          <div class="avatar">{{ (agendamento.doctorName || 'D').charAt(0) }}</div>
+        </ng-template>
+      </div>
+      <div class="top-info">
+        <div class="medico">{{ agendamento.doctorName }}</div>
+        <div class="esp">{{ agendamento.specialty }}</div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="grid">
+      <div class="row">
+        <div class="label">Data</div>
+        <div class="value">{{ agendamento.date }}</div>
+      </div>
+      <div class="row">
+        <div class="label">Hora</div>
+        <div class="value">{{ agendamento.time }}</div>
+      </div>
+      <div class="row">
+        <div class="label">Especialidade</div>
+        <div class="value">{{ agendamento.specialty }}</div>
+      </div>
+      <div class="row">
+        <div class="label">Paciente</div>
+        <div class="value">{{ agendamento.patient || '—' }}</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button mat-stroked-button color="primary" (click)="editar()">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </button>
+
+      <button mat-stroked-button color="warn" (click)="desmarcar()">
+        <mat-icon>delete</mat-icon>
+        Desmarcar
+      </button>
+
+      <a mat-button [routerLink]="['/agendamentos/novo']"
+         [queryParams]="{ esp: agendamento.specialty }">
+        <mat-icon>event</mat-icon>
+        Marcar outro com {{ agendamento.specialty }}
+      </a>
+    </div>
+  </mat-card>
+</div>

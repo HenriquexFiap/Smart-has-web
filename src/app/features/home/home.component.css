@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  min-height: 100vh;
+
+  /* Azul mais encorpado */
+  --bg1: #dde8fa;        /* azul claro */
+  --bg2: #d0e0f9;        /* azul médio-claro */
+  --ring1: #b7cdf3;      /* anel azul médio */
+  --ring2: #a2bdf0;      /* anel mais forte */
+
+  --card: rgba(255,255,255,.9);
+  --border: rgba(0,0,0,.08);
+  --text: #1d2b4f;
+  --muted: #4c5a72;
+  --brand: #1e3a8a;      /* azul escuro título */
+
+  background:
+    radial-gradient(900px 460px at 80% 0%, var(--ring1) 0%, transparent 70%),
+    radial-gradient(1100px 540px at 15% 100%, var(--ring2) 0%, transparent 70%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.hero {
+  width: 100%;
+  max-width: 720px; /* um pouco menor */
+  padding: 42px 32px;
+  border-radius: 20px;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.5);
+  text-align: center;
+  color: var(--text);
+  animation: fadeIn .35s ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo no tamanho anterior */
+.logo {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: clamp(28px, 3.8vw, 40px);
+  line-height: 1.1;
+  margin: 0 0 8px;
+  font-weight: 800;
+  color: var(--brand);
+}
+
+.subtitle {
+  margin: 0 auto 22px;
+  max-width: 55ch;
+  color: var(--muted);
+  font-size: clamp(15px, 2vw, 17px);
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.btn {
+  padding-inline: 20px !important;
+  height: 46px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 5px 12px rgba(30,58,138,.12);
+}
+
+.btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}

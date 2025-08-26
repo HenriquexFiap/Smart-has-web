@@ -1,0 +1,107 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background:
+    radial-gradient(60% 50% at 20% 20%, var(--ring1, #b7cdf3) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(50% 40% at 80% 30%, var(--ring2, #a2bdf0) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(180deg, var(--bg1, #dde8fa) 0%, var(--bg2, #d0e0f9) 100%);
+  box-sizing: border-box;
+}
+
+.det-card {
+  width: min(900px, 95vw);
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--card, rgba(255,255,255,.9));
+  border: 1px solid var(--border, rgba(0,0,0,.08));
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  color: var(--text, #1d2b4f);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.header .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--brand, #1e3a8a);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.id .medico {
+  font-weight: 800;
+  color: var(--text, #1d2b4f);
+  margin-bottom: 2px;
+}
+
+.id .esp {
+  font-size: 13px;
+  color: var(--muted, #4c5a72);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 8px;
+}
+
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border, rgba(0,0,0,.08));
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 0;
+}
+
+.row mat-icon {
+  color: var(--brand, #1e3a8a);
+}
+
+.label {
+  font-size: 12px;
+  color: var(--muted, #4c5a72);
+}
+
+.value {
+  font-weight: 700;
+  color: var(--text, #1d2b4f);
+}
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}

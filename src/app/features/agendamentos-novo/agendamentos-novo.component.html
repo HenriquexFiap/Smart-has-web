@@ -1,0 +1,62 @@
+<div class="page">
+  
+  <mat-card class="novo-card">
+    <div class="header">
+      <div class="left">
+        <mat-icon fontIcon="event"></mat-icon>
+        <h2>Novo Agendamento</h2>
+      </div>
+      <div class="right">
+        <a mat-stroked-button color="primary" [routerLink]="['/agendamentos']">
+          <mat-icon>list</mat-icon>
+          Ver Agendamentos
+        </a>
+      </div>
+    </div>
+
+    <p class="intro" *ngIf="espDaTriagem()">
+      Especialidade sugerida: <strong>{{ espDaTriagem() }}</strong>
+    </p>
+
+    <form [formGroup]="form" class="form">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Especialidade</mat-label>
+        <mat-select formControlName="specialty">
+          <mat-option value="Cardiologia">Cardiologia</mat-option>
+          <mat-option value="Dermatologia">Dermatologia</mat-option>
+          <mat-option value="Neurologia">Neurologia</mat-option>
+          <mat-option value="Ortopedia">Ortopedia</mat-option>
+          <mat-option value="Clínica Geral">Clínica Geral</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="half">
+          <mat-label>Data</mat-label>
+          <input matInput [matDatepicker]="dp" formControlName="date" placeholder="Selecione a data" />
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half">
+          <mat-label>Horário</mat-label>
+          <mat-select formControlName="time" placeholder="Selecione um horário">
+            <mat-option *ngFor="let h of horarios" [value]="h">{{ h }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="actions">
+        <button mat-stroked-button color="primary" type="button" (click)="voltar()">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+
+        <button mat-raised-button color="primary" type="button" (click)="confirmar()">
+          <mat-icon>check</mat-icon>
+          Confirmar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

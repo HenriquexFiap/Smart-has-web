@@ -1,0 +1,43 @@
+<div class="page">
+  <div class="header">
+    <h2>Agendamentos</h2>
+
+    <div class="actions">
+      <a mat-raised-button color="primary" [routerLink]="['/agendamentos/novo']"
+         [queryParams]="{ esp: especialidadeSelecionada || null }">
+        <mat-icon>add</mat-icon>
+        Novo Agendamento
+      </a>
+    </div>
+  </div>
+
+  <p class="intro" *ngIf="especialidadeSelecionada">
+    Mostrando resultados para <strong>{{ especialidadeSelecionada }}</strong>.
+  </p>
+
+  <div class="lista">
+    <mat-card class="item" *ngFor="let a of agendamentosList; let i = index">
+      <div class="left">
+        <div class="avatar">{{ (a.doctorName || 'D').charAt(0) }}</div>
+        <div class="info">
+          <div class="medico">{{ a.doctorName }}</div>
+          <div class="esp">{{ a.specialty }}</div>
+          <div class="quando">
+            {{ a.date }} — {{ a.time }}
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <a mat-stroked-button color="primary" [routerLink]="['/agendamentos', a.id]">
+          <mat-icon>info</mat-icon>
+          Detalhes
+        </a>
+      </div>
+    </mat-card>
+
+    <div class="empty" *ngIf="!agendamentosList || agendamentosList.length === 0">
+      Nenhum agendamento encontrado.
+    </div>
+  </div>
+</div>

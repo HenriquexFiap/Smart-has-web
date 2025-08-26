@@ -1,0 +1,102 @@
+/* Aplica o fundo na raiz do componente (ocupa a tela inteira) */
+:host {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+
+  /* Usa suas variáveis, com fallback em caso de ausência */
+  background:
+    radial-gradient(60% 50% at 20% 20%, var(--ring1, #b7cdf3) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(50% 40% at 80% 30%, var(--ring2, #a2bdf0) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(180deg, var(--bg1, #dde8fa) 0%, var(--bg2, #d0e0f9) 100%);
+  box-sizing: border-box;
+}
+
+/* Cartão central */
+.triagem-card {
+  width: min(900px, 95vw);
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--card, rgba(255,255,255,.9));
+  border: 1px solid var(--border, rgba(0,0,0,.08));
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  color: var(--text, #1d2b4f);
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.header h2 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: var(--brand, #1e3a8a);
+}
+
+.header mat-icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  color: var(--brand, #1e3a8a);
+}
+
+/* Texto introdutório */
+.intro {
+  color: var(--muted, #4c5a72);
+  margin: 6px 0 18px;
+  font-size: 15px;
+}
+
+/* Campo */
+.full-width {
+  width: 100%;
+}
+
+/* Ações (botões) */
+.actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Resultado */
+.resultado {
+  margin-top: 22px;
+}
+
+.resultado-card {
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--border, rgba(0,0,0,.08));
+}
+
+.resultado-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text, #1d2b4f);
+}
+
+.especialidade {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brand, #1e3a8a);
+}
+
+.observacao {
+  font-size: 14px;
+  color: var(--muted, #4c5a72);
+  margin: 8px 0 0;
+}
