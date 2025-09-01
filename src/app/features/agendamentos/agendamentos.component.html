@@ -1,10 +1,15 @@
+<!-- src/app/features/agendamentos/agendamentos.component.html -->
 <div class="page">
   <div class="header">
     <h2>Agendamentos</h2>
 
     <div class="actions">
-      <a mat-raised-button color="primary" [routerLink]="['/agendamentos/novo']"
-         [queryParams]="{ esp: especialidadeSelecionada || null }">
+      <a
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/agendamentos/novo']"
+        [queryParams]="{ esp: especialidadeSelecionada || null }"
+      >
         <mat-icon>add</mat-icon>
         Novo Agendamento
       </a>
@@ -36,7 +41,7 @@
       </div>
     </mat-card>
 
-    <div class="empty" *ngIf="!agendamentosList || agendamentosList.length === 0">
+    <div class="empty" *ngIf="agendamentosList.length === 0">
       Nenhum agendamento encontrado.
     </div>
   </div>

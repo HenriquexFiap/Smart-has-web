@@ -2,7 +2,7 @@
   display: block;
   min-height: 100vh;
 
-  /* Azul mais encorpado */
+  
   --bg1: #dde8fa;        /* azul claro */
   --bg2: #d0e0f9;        /* azul médio-claro */
   --ring1: #b7cdf3;      /* anel azul médio */
@@ -95,3 +95,5 @@
   width: 20px;
   height: 20px;
 }
+
+

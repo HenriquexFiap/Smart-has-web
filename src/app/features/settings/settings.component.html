@@ -1,0 +1,80 @@
+<div class="page">
+  <mat-card class="settings-card">
+    <div class="header">
+      <div class="profile">
+        <div class="avatar">{{ primeiraLetra() }}</div>
+        <div class="info">
+          <div class="nome">{{ usuario()?.name || 'Paciente' }}</div>
+          <div class="tag">Paciente</div>
+        </div>
+      </div>
+
+      <a mat-stroked-button color="primary" [routerLink]="['/dashboard']">
+        <mat-icon>dashboard</mat-icon>
+        Voltar ao painel
+      </a>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="content" *ngIf="!carregando(); else carregandoTpl">
+      <h3>Informações pessoais</h3>
+
+      <form [formGroup]="form" class="form">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Nome completo</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="half">
+            <mat-label>Telefone (opcional)</mat-label>
+            <input matInput formControlName="phone" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half">
+            <mat-label>Data de nascimento (opcional)</mat-label>
+            <input matInput type="date" formControlName="birthdate" />
+          </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <h3>Ações da conta</h3>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Senha (obrigatória para atualizar)</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Digite sua senha atual" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" (click)="salvar()" [disabled]="salvando()">
+            <mat-icon>save</mat-icon>
+            {{ salvando() ? 'Salvando...' : 'Atualizar perfil' }}
+          </button>
+
+          <button mat-stroked-button color="primary" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Sair
+          </button>
+
+          <button mat-stroked-button color="warn" (click)="excluirConta()">
+            <mat-icon>delete</mat-icon>
+            Excluir conta
+          </button>
+        </div>
+
+        <div class="erro" *ngIf="erro()">{{ erro() }}</div>
+      </form>
+    </div>
+
+    <ng-template #carregandoTpl>
+      <div class="loading">Carregando perfil…</div>
+    </ng-template>
+  </mat-card>
+</div>

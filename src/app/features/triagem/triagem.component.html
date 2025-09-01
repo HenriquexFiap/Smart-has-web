@@ -19,13 +19,21 @@
     ></textarea>
   </mat-form-field>
 
+  <!-- ⚠️ trocado: chama analisarESeguir() -->
   <div class="actions">
-    <button mat-raised-button color="primary" (click)="analisarSintomas()">
+    <button mat-raised-button color="primary" (click)="analisarESeguir()">
       <mat-icon>search</mat-icon>
-      Analisar
+      {{ salvando ? 'Salvando...' : 'Analisar' }}
     </button>
+
+    <mat-chip-set *ngIf="salvo" class="chip-salvo">
+      <mat-chip color="primary" selected>salvo</mat-chip>
+    </mat-chip-set>
   </div>
 
+  <div *ngIf="erro" class="erro">{{ erro }}</div>
+
+  <!-- Resultado -->
   <div *ngIf="especialidade" class="resultado">
     <mat-card class="resultado-card">
       <mat-card-header>
@@ -42,6 +50,7 @@
           Você pode prosseguir para o agendamento com essa especialidade.
         </p>
         <div class="actions">
+          <!-- ⚠️ trocado: agora aponta para /agendamentos/novo -->
           <a
             mat-raised-button
             color="accent"
@@ -54,5 +63,16 @@
         </div>
       </mat-card-content>
     </mat-card>
+  </div>
+
+  <mat-divider class="mt-24" *ngIf="historico.length"></mat-divider>
+
+  <div *ngIf="historico.length" class="historico">
+    <h3>Histórico recente</h3>
+    <ul>
+      <li *ngFor="let h of historico">
+        {{ h.sintomas }}
+      </li>
+    </ul>
   </div>
 </mat-card>

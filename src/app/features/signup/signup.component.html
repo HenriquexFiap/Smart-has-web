@@ -1,10 +1,9 @@
 <div class="wrapper">
   <mat-card class="hero auth-card">
-
     <h1 class="title">Criar conta</h1>
     <p class="subtitle">Leva menos de um minuto.</p>
 
-    <form (ngSubmit)="onSignup()" class="form">
+    <form (ngSubmit)="criarConta()" class="form">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nome completo</mat-label>
         <input matInput type="text" [(ngModel)]="nome" name="nome" required />
@@ -15,6 +14,7 @@
         <input matInput type="email" [(ngModel)]="email" name="email" required />
       </mat-form-field>
 
+      <!-- Esses dois campos continuam visuais, mas não vão para o backend -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Telefone</mat-label>
         <input matInput type="tel" [(ngModel)]="telefone" name="telefone" />
@@ -30,10 +30,12 @@
         <input matInput type="password" [(ngModel)]="senha" name="senha" required />
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="btn full-width" type="submit">
+      <button mat-raised-button color="primary" class="full-width" type="submit">
         <mat-icon>person_add</mat-icon>
         Criar conta
       </button>
+
+      <div *ngIf="erro" style="margin-top:8px;color:#b91c1c">{{ erro }}</div>
     </form>
 
     <div class="divider">ou</div>

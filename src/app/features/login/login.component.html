@@ -1,10 +1,9 @@
 <div class="wrapper">
   <mat-card class="hero auth-card">
-
     <h1 class="title">Entrar</h1>
     <p class="subtitle">Acesse sua conta para continuar.</p>
 
-    <form (ngSubmit)="onLogin()" class="form">
+    <form class="form" (ngSubmit)="logar()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput type="email" [(ngModel)]="email" name="email" required />
@@ -15,10 +14,12 @@
         <input matInput type="password" [(ngModel)]="senha" name="senha" required />
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="btn full-width" type="submit">
+      <button mat-raised-button color="primary" class="full-width" type="submit">
         <mat-icon>login</mat-icon>
-        Log In
+        {{ loading ? 'Entrando...' : 'Log In' }}
       </button>
+
+      <div *ngIf="erro" style="margin-top:8px;color:#b91c1c">{{ erro }}</div>
     </form>
 
     <div class="divider">ou</div>

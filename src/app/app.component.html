@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary" class="app-toolbar">
+  <!-- Lado esquerdo: Logo + Nome -->
+  <button mat-button [routerLink]="['/']" class="logo-btn">
+    <img src="assets/images/PulsePointLogo.jpg" alt="Logo PulsePoint" class="logo" />
+    
+  </button>
+
+  <span class="spacer"></span>
+
+  <!-- Lado direito: Navegação -->
+  <a mat-button routerLink="/triagem">Triagem</a>
+  <a mat-button routerLink="/agendamentos">Agendamentos</a>
+  <a mat-button routerLink="/settings">Configurações</a>
+</mat-toolbar>
+
+<!-- Conteúdo da rota -->
+<div class="page">
+  <router-outlet></router-outlet>
+</div>

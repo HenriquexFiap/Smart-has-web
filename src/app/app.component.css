@@ -1,0 +1,36 @@
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #DDE8FA, #DBE6FA, #BBD0F3  );
+  border-bottom: 2px solid #1e3a8a; /* linha azul para destacar */
+}
+
+.logo-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: none;
+  color: #1e3a8a; /* azul escuro */
+}
+
+.logo {
+  height: 70px; /* aumenta o tamanho da logo */
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #1e3a8a; /* azul escuro */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Links de navegação */
+a[mat-button] {
+  color: #1e3a8a; /* azul escuro */
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 10px;
+}

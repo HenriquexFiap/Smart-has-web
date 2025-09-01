@@ -1,6 +1,7 @@
+// src/app/features/agendamentos/agendamentos.component.ts
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,27 +12,24 @@ import { AppointmentsService, Appointment } from '../core/appointments.service';
 @Component({
   selector: 'app-agendamentos',
   standalone: true,
-  imports: [RouterLink, NgIf, NgFor, MatCardModule, MatIconModule, MatButtonModule],
+  imports: [RouterLink, NgIf, NgFor, DatePipe, MatCardModule, MatIconModule, MatButtonModule],
   templateUrl: './agendamentos.component.html',
   styleUrl: './agendamentos.component.css'
 })
 export class AgendamentosComponent {
-  private route = inject(ActivatedRoute);
   private store = inject(AppointmentsService);
+  private route = inject(ActivatedRoute);
 
-  // vindo por query param (?esp=Cardiologia)
-  especialidadeSelecionada?: string;
+  especialidadeSelecionada: string | null = null;
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
-      this.especialidadeSelecionada = params.get('esp') || undefined;
-    });
+    this.especialidadeSelecionada = this.route.snapshot.queryParamMap.get('esp');
   }
 
-  // lista final que o template usa
+  /** Getter usado no template (array “normal”) */
   get agendamentosList(): Appointment[] {
+    const todos = this.store.list();
     const esp = this.especialidadeSelecionada;
-    const data: Appointment[] = this.store.list() ?? [];
-    return esp ? data.filter((a: Appointment) => a.specialty === esp) : data;
+    return esp ? todos.filter(a => a.specialty === esp) : todos;
   }
 }

@@ -1,47 +1,55 @@
+// signup.component.ts
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { Router, RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { AuthService } from '../../core/auth.service';
+
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterLink,
-    FormsModule,
-    RouterModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule
+    FormsModule, NgIf,
+    MatCardModule, MatFormFieldModule, MatInputModule,
+    MatButtonModule, MatIconModule
   ],
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrl: './signup.component.css'
 })
 export class SignupComponent {
   nome = '';
   email = '';
+  senha = '';
   telefone = '';
   nascimento = '';
-  senha = '';
+  erro: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
-  onSignup() {
-    if (this.nome && this.email && this.senha) {
-      // salvar/validar mock
-      this.router.navigate(['/triagem']);
-    } else {
-      alert('Preencha nome, email e senha.');
-    }
+  criarConta() {
+    this.erro = null;
+
+    const payload = {
+      name: this.nome,
+      email: this.email,
+      password: this.senha,
+      role: 'paciente'  // 🔑 igual ao que funciona no Swagger
+    };
+
+    this.auth.signup(payload).subscribe({
+      next: () => {
+        alert('Conta criada com sucesso!');
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.erro = 'Erro ao criar conta';
+      }
+    });
   }
 }
